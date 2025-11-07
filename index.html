@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zappar Image Tracking (Simpel)</title>
+  <title>BISAAA</title>
   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
   <script src="https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js"></script>
 </head>
 <body>
   <a-scene zappar-scene>
-    <a-entity zappar-image="target: trex.zpt">
+    <a-assets>
+        <a-asset-item id="marker_saya" src="trex.zpt"></a-asset-item>
+    </a-assets>
+    <a-entity zappar-image="marker_saya">
       
       <a-box
-        position="0 0 0"
-        scale="0.2 0.2 0.2"
         color="red"
       ></a-box>
 
@@ -22,3 +23,4 @@
   </a-scene>
 </body>
 </html>
+
