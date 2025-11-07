@@ -3,45 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Test</title>
-
-  <!-- A-Frame dan Zappar -->
+  <title>Zappar Image Tracking (Simpel)</title>
   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
   <script src="https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js"></script>
 </head>
 <body>
-  <a-scene
-    zappar-scene
-    device-orientation-permission-ui="enabled: true"
-    renderer="colorManagement: true;"
-  >
-    <!-- Kamera Zappar -->
-    <a-entity zappar-camera></a-entity>
-
-    <!-- Marker (gunakan target:) -->
-    <a-entity zappar-image="target: trex.zpt" id="target-marker">
+  <a-scene zappar-scene>
+    <a-entity zappar-image="target: trex.zpt">
+      
       <a-box
         position="0 0 0"
         scale="0.2 0.2 0.2"
         color="red"
-        visible="false"
-        id="box"
       ></a-box>
+
     </a-entity>
+    <a-entity zappar-camera></a-entity>
   </a-scene>
-
-  <script>
-    const marker = document.querySelector("#target-marker");
-    const box = document.querySelector("#box");
-
-    marker.addEventListener("zappar-visible", () => {
-      box.setAttribute("visible", true);
-    });
-
-    marker.addEventListener("zappar-notvisible", () => {
-      box.setAttribute("visible", false);
-    });
-  </script>
 </body>
 </html>
-
