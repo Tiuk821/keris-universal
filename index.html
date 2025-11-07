@@ -6,7 +6,7 @@
   <title>Zappar Image Tracking</title>
 
   <!-- A-Frame dan Zappar -->
-  <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
   <script src="https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js"></script>
 </head>
 <body>
@@ -15,14 +15,11 @@
     device-orientation-permission-ui="enabled: true"
     renderer="colorManagement: true;"
   >
-    <!-- Kamera dari Zappar -->
+    <!-- Kamera Zappar -->
     <a-entity zappar-camera></a-entity>
 
-    <a-assets>
-        <a-asset-item id="marker_saya" src="trex.zpt"></a-asset-item>
-    </a-assets>
-    <!-- Marker (ZPT) -->
-    <a-entity zappar-image="marker_saya" id="target-marker">
+    <!-- Marker (gunakan target:) -->
+    <a-entity zappar-image="target: trex.zpt" id="target-marker">
       <a-box
         position="0 0 0"
         scale="0.2 0.2 0.2"
@@ -34,14 +31,15 @@
   </a-scene>
 
   <script>
-    // Menunggu event marker terdeteksi
-    document.querySelector("#target-marker").addEventListener("zappar-visible", () => {
-      document.querySelector("#box").setAttribute("visible", true);
+    const marker = document.querySelector("#target-marker");
+    const box = document.querySelector("#box");
+
+    marker.addEventListener("zappar-visible", () => {
+      box.setAttribute("visible", true);
     });
 
-    // Menunggu event marker hilang
-    document.querySelector("#target-marker").addEventListener("zappar-notvisible", () => {
-      document.querySelector("#box").setAttribute("visible", false);
+    marker.addEventListener("zappar-notvisible", () => {
+      box.setAttribute("visible", false);
     });
   </script>
 </body>
